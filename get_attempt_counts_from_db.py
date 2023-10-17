@@ -19,5 +19,5 @@ def get_attempt_counts_from_db(db_path):
     return data
 
 
-attempt_counts_data_updated = get_attempt_counts_from_db("/quiz_data.db")
+attempt_counts_data_updated = get_attempt_counts_from_db("quiz_data.db")
 attempt_counts_data_updated

@@ -140,5 +140,5 @@ def import_all_csvs_in_directory(directory='.'):
 if __name__ == "__main__":
     create_database()
     create_correct_answers_table()
-    directory_path = 'C:/Users/17863/PycharmProjects/tailwind-dashboard-template/User_Data'
+    directory_path = os.getcwd()
     import_all_csvs_in_directory(directory_path)
