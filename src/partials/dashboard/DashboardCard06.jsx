@@ -1,3 +1,4 @@
+
 import React from 'react';
 import DoughnutChart from '../../charts/DoughnutChart';
 
@@ -7,22 +8,22 @@ import { tailwindConfig } from '../../utils/Utils';
 function DashboardCard06() {
 
   const chartData = {
-    labels: ['United States', 'Italy', 'Other'],
+    labels: ['Question 9', 'Question 10', 'Question 4', 'Question 8'],
     datasets: [
       {
-        label: 'Top Countries',
-        data: [
-          35, 30, 35,
-        ],
+        label: 'Top Wrong Questions',
+        data: [40, 35, 25, 15],
         backgroundColor: [
           tailwindConfig().theme.colors.indigo[500],
           tailwindConfig().theme.colors.blue[400],
-          tailwindConfig().theme.colors.indigo[800],
+          tailwindConfig().theme.colors.indigo[900],
+          tailwindConfig().theme.colors.purple[500], 
         ],
         hoverBackgroundColor: [
           tailwindConfig().theme.colors.indigo[600],
           tailwindConfig().theme.colors.blue[500],
           tailwindConfig().theme.colors.indigo[900],
+          tailwindConfig().theme.colors.purple[600], 
         ],
         borderWidth: 0,
       },
@@ -32,7 +33,7 @@ function DashboardCard06() {
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
       <header className="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-        <h2 className="font-semibold text-slate-800 dark:text-slate-100">Top Countries</h2>
+        <h2 className="font-semibold text-slate-800 dark:text-slate-100">Top Wrong Answers</h2>
       </header>
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
