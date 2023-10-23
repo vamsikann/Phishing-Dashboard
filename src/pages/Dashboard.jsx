@@ -37,28 +37,18 @@ function Dashboard() {
 
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
-              {/* Line chart */}
               <DashboardCard01 />
-              {/* Line chart  */}
               <DashboardCard06 />
-              {/* Table  */}
               <DashboardCard03 />
-              {/* Bar chart  */}
               <DashboardCard04 />
-              {/* Line chart */}
               <DashboardCard05 />
-              {/* Doughnut chart */}
-              
+              <DashboardCard02 />
               <DashboardCard07 />
-              {/* Line chart ( */}
               <DashboardCard08 />
-              {/* Stacked bar chart  */}
               <DashboardCard09 />
             </div>
           </div>
         </main>
-
-        <Banner />
       </div>
     </div>
   );
