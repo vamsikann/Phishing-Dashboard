@@ -15,6 +15,7 @@ import DashboardCard06 from "../partials/dashboard/DashboardCard06";
 import DashboardCard07 from "../partials/dashboard/DashboardCard07";
 import DashboardCard08 from "../partials/dashboard/DashboardCard08";
 import DashboardCard09 from "../partials/dashboard/DashboardCard09";
+import Banner from "../partials/Banner";
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -39,16 +40,15 @@ function Dashboard() {
               {/* Line chart */}
               <DashboardCard01 />
               {/* Line chart  */}
-              <DashboardCard02 />
-              {/* Line chart  */}
+              <DashboardCard06 />
+              {/* Table  */}
               <DashboardCard03 />
               {/* Bar chart  */}
               <DashboardCard04 />
               {/* Line chart */}
               <DashboardCard05 />
               {/* Doughnut chart */}
-              <DashboardCard06 />
-              {/* Table  */}
+              
               <DashboardCard07 />
               {/* Line chart ( */}
               <DashboardCard08 />
@@ -57,6 +57,8 @@ function Dashboard() {
             </div>
           </div>
         </main>
+
+        <Banner />
       </div>
     </div>
   );
