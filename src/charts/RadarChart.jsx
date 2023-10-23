@@ -26,6 +26,19 @@ function RadarChart({ data, width, height }) {
       type: 'radar',
       data: data,
       options: {
+        animation: {
+          duration: 0  // removes animation
+        },
+        hover: {
+          mode: null  // disables hover mode
+        },
+        responsiveAnimationDuration: 0,  // animation duration after a resize
+        legend: {
+          display: false  // hides legend
+        },
+        tooltips: {
+          enabled: false  // hides tooltips on hover
+        },
         scales: {
           r: {
             pointLabels: {
@@ -35,6 +48,8 @@ function RadarChart({ data, width, height }) {
               color: chartColors.borderColor,
             },
             ticks: {
+              maxTicksLimit: 4,
+              stepSize: 1,
               backdropColor: chartColors.backgroundColor,
             }
           }
