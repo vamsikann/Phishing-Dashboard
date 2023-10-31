@@ -2,9 +2,11 @@ import sqlite3
 import csv
 import os
 
+directory_path = os.path.join(os.getcwd(), "User_Data")
+
 print("Starting SQLdb.py script...")
 
-PROCESSED_FILES_LIST = 'processed_files.txt'
+PROCESSED_FILES_LIST = os.path.join(directory_path, 'processed_files.txt')
 
 
 def create_database():
@@ -140,5 +142,5 @@ def import_all_csvs_in_directory(directory='.'):
 if __name__ == "__main__":
     create_database()
     create_correct_answers_table()
-    directory_path = os.getcwd()
+    directory_path = os.path.join(os.getcwd(), "User_Data")
     import_all_csvs_in_directory(directory_path)

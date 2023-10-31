@@ -1,47 +1,46 @@
 import React, { useState, useEffect } from 'react';
 
-const QuizMetrics = () => {
-  const [topWrongQuestions, setTopWrongQuestions] = useState([]);
+const UserCounter = () => {
+  const [userCount, setUserCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/top-wrong-questions')
-      .then(response => response.json())
+    fetch('/User_Data/processed_files.txt')
+      .then(response => response.text())
       .then(data => {
-        setTopWrongQuestions(data.slice(0, 4));
+        const users = data.split('\n').filter(line => line.trim() !== '');
+        setUserCount(users.length);
       })
       .catch(err => {
-        console.error('Error fetching top wrong questions:', err);
+        console.error('Error fetching user count:', err);
         setError(true);
       })
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+}, []);
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700 w-650 h-400 p-5">
-      <div className="text-center">
-        <h1 className="text-lg mb-2 text-white-700">Quiz Metrics</h1>
-        <h2 className="text-xl text-blue-600 mb-2">Total questions in the quiz: 10</h2>
-
-        
-        <div className="mt-5 border-t border-gray-300 pt-2">
-          <h3 className="text-base text-gray-700 mb-2">Top Questions Answered Incorrectly:</h3>
-          {loading && <p>Loading...</p>}
-          {error && <p>Error fetching data.</p>}
-          {topWrongQuestions.map((item, idx) => (
-            <p key={idx} className="text-sm text-indigo-600">
-              {item[0]} - Answered wrong {item[1]} times
-            </p>
-          ))}
+    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
+      <header className="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
+        <h2 className="font-semibold text-slate-800 dark:text-slate-100">User Counter</h2>
+      </header>
+      <div className="text-center p-5">
+        {loading && <p>Loading...</p>}
+        {error && <p>Error fetching data.</p>}
+        <div className="mt-5">
+          <div className="relative w-60 h-60 mx-auto mb-4">
+            <div className="absolute top-0 left-0 w-full h-full rounded-full bg-pink-500"></div>
+            <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-white rounded-full"></div>
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+              <span className="text-4xl font-bold" style={{ color: 'rgb(25,2,45)' }}>{userCount}</span>
+            </div>
+          </div>
         </div>
-        
-        
       </div>
     </div>
   );
 };
 
-export default QuizMetrics;
+export default UserCounter;
