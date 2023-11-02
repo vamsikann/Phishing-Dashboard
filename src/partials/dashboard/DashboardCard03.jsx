@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import RadarChart from "../../charts/RadarChart";
-
 import { hexToRGB, tailwindConfig } from '../../utils/Utils';
 
 function DashboardCard03() {
+  const [bpidData, setBpidData] = useState([0, 0, 0, 0]);
+  const [error, setError] = useState(false);
+  
+  useEffect(() => {
+    fetch('http://localhost:5000/bpid_data')
+      .then(response => response.json())
+      .then(data => {
+        const bpid = data.map(item => parseInt(Object.values(item)[0]));
+        setBpidData(bpid);
+      })
+      .catch(err => {
+        console.error('Error fetching data:', err);
+        setError(true);
+      });
+  }, []);
+
   const radarChartData = {
     labels: ['No Action', 'Emails Opened', 'Links Clicked', 'Data Submitted'],
     datasets: [
       {
         label: "Actions",
-        data: [0, 3, 1, 2],
+        data: bpidData,
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
@@ -23,6 +38,10 @@ function DashboardCard03() {
       }
     ],
   };
+
+  if (error) {
+    return <div>Failed to load data</div>;
+  }
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
