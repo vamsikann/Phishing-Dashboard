@@ -48,7 +48,6 @@ function WelcomeBanner() {
       {/* Content */}
       <div className="relative">
         <h1 className="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 font-bold mb-1">FIU Simulated Phishing Campaign Results</h1>
-        <p className="dark:text-indigo-200">Results of the campaign from October.</p>
       </div>
     </div>
   );
