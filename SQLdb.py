@@ -123,7 +123,6 @@ def import_csv_to_sqlite(csv_file):
 
 
 def import_all_csvs_in_directory(directory='.'):
-
     if os.path.exists(PROCESSED_FILES_LIST):
         with open(PROCESSED_FILES_LIST, 'r') as f:
             processed_files = f.read().splitlines()

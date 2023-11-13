@@ -11,38 +11,43 @@ app = Flask(__name__)
 CORS(app)
 
 
+# API TEST endpoint to make sure Flask server is up and running
 @app.route('/api/data', methods=['GET'])
 def get_data():
     return jsonify({"message": "Hello from Flask!"})
 
 
+# API endpoint for the raw scores for each user. Shown in a JSON array
 @app.route('/api/scores', methods=['GET'])
 def get_scores():
     data = get_scores_from_db("quiz_data.db")
     return jsonify(data)
 
 
+# API endpoint to retrieve the score distribution for the quiz (Gaussian Distribution)
 @app.route('/api/get-score-distribution', methods=['GET'])
 def get_score_distribution():
     data = get_score_distribution_from_quiz_responses("quiz_data.db")
     return jsonify(data)
 
 
+# API endpoint to retrieve how many attempts each user had. Duplicates are not allowed, there every attempt is 1
 @app.route('/api/attempts', methods=['GET'])
 def get_attempts():
     data = get_attempt_counts_from_db("quiz_data.db")
     return jsonify(data)
 
 
+# API endpoint to retrieve the questions which were answered wrong most frequently
 @app.route('/api/top-wrong-questions', methods=['GET'])
 def top_wrong_questions():
     data = get_top_wrong_questions("quiz_data.db")
     return jsonify(data)
 
 
+# API endpoint to retrieve the amount of people who have taken the quiz
 @app.route('/api/quiz-takers-count', methods=['GET'])
 def quiz_takers_count():
-
     conn = sqlite3.connect("quiz_data.db")
     cursor = conn.cursor()
 
@@ -54,11 +59,12 @@ def quiz_takers_count():
     return jsonify({"count": count})
 
 
+# API endpoint for BullPhishID
 @app.route('/bpid_data', methods=['GET'])
 def bpid_data():
     with open('bpid.html', 'r', encoding='utf-8') as f:
         html_content = f.read()
-    
+
     soup = BeautifulSoup(html_content, 'html.parser')
     widgets = soup.select('.widget_area__stats')
     data = []

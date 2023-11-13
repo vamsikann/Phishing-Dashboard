@@ -4,3 +4,5 @@ evazq066@fiu.edu.csv
 mleal014@fiu.edu.csv
 vkann001@fiu.edu.csv
 dpere344@fiu.edu.csv
+cmari116@fiu.edu.csv
+ccarr022@fiu.edu.csv
