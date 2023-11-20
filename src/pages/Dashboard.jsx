@@ -9,9 +9,6 @@ import DashboardCard03 from "../partials/dashboard/DashboardCard03";
 import DashboardCard04 from "../partials/dashboard/DashboardCard04";
 import DashboardCard05 from "../partials/dashboard/DashboardCard05";
 import DashboardCard06 from "../partials/dashboard/DashboardCard06";
-import DashboardCard07 from "../partials/dashboard/DashboardCard07";
-import DashboardCard08 from "../partials/dashboard/DashboardCard08";
-import DashboardCard09 from "../partials/dashboard/DashboardCard09";
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -38,10 +35,9 @@ function Dashboard() {
               <DashboardCard03 />
               <DashboardCard04 />
               <DashboardCard05 />
+            </div>
+            <div className="py-6 w-full mx-auto">
               <DashboardCard02 />
-              <DashboardCard07 />
-              <DashboardCard08 />
-              <DashboardCard09 />
             </div>
           </div>
         </main>

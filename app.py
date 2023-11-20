@@ -59,6 +59,31 @@ def quiz_takers_count():
     return jsonify({"count": count})
 
 
+# API endpoint for average performance by specific date
+@app.route('/api/average-scores-by-date', methods=['GET'])
+def average_scores_by_date():
+    data = get_average_scores_by_date()
+    return jsonify(data)
+
+def get_average_scores_by_date():
+    conn = sqlite3.connect("quiz_data.db")
+    cursor = conn.cursor()
+
+    query = """
+    SELECT SUBSTR(submitDate, 1, INSTR(submitDate, ' ')-1) AS just_date, AVG(score) as average_score
+    FROM quiz_responses
+    GROUP BY just_date
+    ORDER BY just_date
+    """
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    
+    average_scores = [{"submitDate": row[0], "averageScore": row[1]} for row in rows]
+    
+    conn.close()
+    
+    return average_scores
+
 # API endpoint for BullPhishID
 @app.route('/bpid_data', methods=['GET'])
 def bpid_data():
@@ -77,7 +102,6 @@ def bpid_data():
             data.append({title: percentage_text})
 
     return jsonify(data)
-
 
 if __name__ == "__main__":
     app.run(debug=True)

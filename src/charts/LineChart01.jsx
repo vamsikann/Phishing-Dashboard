@@ -39,23 +39,33 @@ function LineChart01({
         },
         scales: {
           y: {
-            display: false,
+            display: true,
+            title: {
+              display: true,
+              text: 'Average Score', // Replace with your y-axis label
+              color: '#666', // You can set the color
+              font: {
+                family: 'Helvetica', // You can set the font family
+                size: 14, // You can set the font size
+                style: 'normal', // You can set the font style
+              },
+            },
             beginAtZero: true,
           },
           x: {
             type: 'time',
             time: {
               parser: 'MM-DD-YYYY',
-              unit: 'month',
+              tooltipFormat: 'll',
             },
-            display: false,
+            display: true,
           },
         },
         plugins: {
           tooltip: {
             callbacks: {
               title: () => false, // Disable tooltip title
-              label: (context) => formatValue(context.parsed.y),
+              label: (context) => context.parsed.y,
             },
             bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
             backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
